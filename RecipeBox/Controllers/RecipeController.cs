@@ -47,7 +47,7 @@ namespace RecipeBox.Controllers
       _db.SaveChanges();
       if (CategoryId != 0)
       {
-          _db.CategoryItem.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = recipe.RecipeId });
+          _db.CategoryRecipe.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = recipe.RecipeId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -83,7 +83,7 @@ namespace RecipeBox.Controllers
 
     public ActionResult AddCategory(int id)
     {
-      var thisrecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
       ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
       return View(thisRecipe);
     }

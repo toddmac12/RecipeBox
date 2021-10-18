@@ -2,6 +2,27 @@
   Layout = "_Layout";
 }
 
-<h1>Welcome to the To Do List!</h1>
-<p>@Html.ActionLink("See all items", "Index", "Items")</p> <p>@Html.ActionLink("See all categories", "Index", "Categories")</p>
-<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
+<div class="jumbotron">
+    <h1>Recipe Box</h1>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <h2>Welcome to Recipe Box</h2>
+        <p>
+            An app that allows users to keep track of recipes.
+        </p>
+    </div>
+    <div class="col-md-3">
+        <h2>Recipes</h2>
+        <p>@Html.ActionLink("See all Recipes", "Index", "Recipes")</a></p>
+    </div>
+    <div class="col-md-3">
+        <h2>Categories</h2>
+        <p>@Html.ActionLink("See all Categories", "Index", "Categories")</p>
+    </div>
+    <div class="col-md-3">
+        <h2>Register/SignIn</h2>
+        <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
+    </div>
+</div>
+
