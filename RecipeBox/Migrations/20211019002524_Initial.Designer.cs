@@ -9,7 +9,7 @@ using RecipeBox.Models;
 namespace RecipeBox.Migrations
 {
     [DbContext(typeof(RecipeBoxContext))]
-    [Migration("20211018231304_Initial")]
+    [Migration("20211019002524_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,8 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using RecipeBox.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace RecipeBox.Controllers
 {
@@ -67,6 +72,34 @@ namespace RecipeBox.Controllers
     {
       var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
       _db.Categories.Remove(thisCategory);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+
+    public ActionResult AddRecipe(int id)
+    {
+      var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
+      ViewBag.CategoryId = new SelectList(_db.Recipes, "RecipeId", "Name");
+      return View(thisCategory);
+    }
+
+    [HttpPost]
+    public ActionResult AddRecipe(Category category, int RecipeId)
+    {
+      if (RecipeId != 0)
+      {
+      _db.CategoryRecipe.Add(new CategoryRecipe() { RecipeId = RecipeId, CategoryId = category.CategoryId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+      [HttpPost]
+    public ActionResult DeleteCategory(int joinId)
+    {
+      var joinEntry = _db.CategoryRecipe.FirstOrDefault(entry => entry.CategoryRecipeId == joinId);
+      _db.CategoryRecipe.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

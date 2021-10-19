@@ -23,12 +23,11 @@
         @foreach (var join in Model.JoinEntities)
         {
           <p>@join.Recipe.Ingredient</p>
-          @using (Html.BeginForm("DeleteRecipe", "Recipes"))
+          @using (Html.BeginForm("DeleteCategory", "Categories"))
           {
             @Html.Hidden("joinId", @join.CategoryRecipeId)
             <input type="submit" value="Delete" class="btn btn-danger" />
           }
-          
         }
     }
   </dl>
